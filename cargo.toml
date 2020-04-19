@@ -1,0 +1,24 @@
+[package]
+name = "msp430fr4133"
+version = "0.1.0"
+authors = ["Stian Eklund <stian.eklund@gmail.com>"]
+description = "Peripheral access crate for MSP430FR4133 microcontroller"
+keywords = ["no-std", "msp430", "ti", "launchpad"]
+repository = "https://github.com/stianeklund/msp430fr4133"
+documentation = "https://doc.rs/msp430fr4133"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bare-metal = "0.2.5"
+msp430 = "0.2.0"
+vcell = "0.1.2"
+
+[dependencies.msp430-rt]
+optional = true
+version  = "0.2.4"
+
+[features]
+rt = ["msp430-rt/device"]
+
