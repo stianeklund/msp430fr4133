@@ -5237,6 +5237,19 @@
               <bitWidth>1</bitWidth>
               <access>read-write</access>
             </field>
+            <field>
+              <name>PMMPW</name>
+              <description>PMM Password</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>8</bitWidth>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>255</maximum>
+                </range>
+              </writeConstraint>
+            </field>
           </fields>
         </register>
         <register>
@@ -5575,10 +5588,116 @@
         </register>
         <register>
           <name>SYSRSTIV</name>
-          <description>Reset vector generator</description>
+          <description>Reset Vector Generator</description>
           <addressOffset>30</addressOffset>
           <size>16</size>
           <resetMask>65535</resetMask>
+          <fields>
+            <field>
+              <name>SYSRSTIV</name>
+              <description>Reset interrupt vector</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>16</bitWidth>
+              <access>read-only</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>NONE</name>
+                  <description>No interrupt pending</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>BOR</name>
+                  <description>Brownout</description>
+                  <value>2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>RSTNMI</name>
+                  <description>RSTIFG RST/NMI</description>
+                  <value>4</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PMMSWBOR</name>
+                  <description>PMMSWBOR software BOR</description>
+                  <value>6</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>LPM5WU</name>
+                  <description>LPMx.5 wakeup</description>
+                  <value>8</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SECYV</name>
+                  <description>Security violation</description>
+                  <value>10</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSRSTIV_12</name>
+                  <description>Reserved</description>
+                  <value>12</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SVSHIFG</name>
+                  <description>SVSHIFG SVSH event</description>
+                  <value>14</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSRSTIV_16</name>
+                  <description>Reserved</description>
+                  <value>16</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSRSTIV_18</name>
+                  <description>Reserved</description>
+                  <value>18</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PMMSWPOR</name>
+                  <description>PMMSWPOR software POR</description>
+                  <value>20</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>WDTIFG</name>
+                  <description>WDTIFG watchdog timeout</description>
+                  <value>22</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>WDTPW</name>
+                  <description>WDTPW watchdog password violation</description>
+                  <value>24</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>FRCTLPW</name>
+                  <description>FRCTLPW password violation</description>
+                  <value>26</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>UBDIFG</name>
+                  <description>Uncorrectable FRAM bit error detection</description>
+                  <value>28</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PERF</name>
+                  <description>Peripheral area fetch</description>
+                  <value>30</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PMMPW</name>
+                  <description>PMM password violation</description>
+                  <value>32</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>SYSRSTIV_34</name>
+                  <description>Reserved</description>
+                  <value>34</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>FLLUL</name>
+                  <description>FLL unlock (PUC)</description>
+                  <value>36</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
         </register>
         <register>
           <name>SYSCFG0</name>
@@ -5600,6 +5719,32 @@
               <bitOffset>1</bitOffset>
               <bitWidth>1</bitWidth>
               <access>read-write</access>
+            </field>
+            <field>
+              <name>FRWPPW</name>
+              <description>FRAM protection password. Write with 0A5h to unlock the FRAM protection registers. Always reads as 096h</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>8</bitWidth>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>255</maximum>
+                </range>
+              </writeConstraint>
+            </field>
+            <field>
+              <name>FRWPOA</name>
+              <description>Program FRAM write protection offsett address from the beginning of Program FRAM. The offset increases by 1KB resolution</description>
+              <bitOffset>2</bitOffset>
+              <bitWidth>6</bitWidth>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>63</maximum>
+                </range>
+              </writeConstraint>
             </field>
           </fields>
         </register>
@@ -6624,6 +6769,19 @@
                 </enumeratedValue>
               </enumeratedValues>
             </field>
+            <field>
+              <name>FRCTLPW</name>
+              <description>FRCTLPW password</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>8</bitWidth>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>255</maximum>
+                </range>
+              </writeConstraint>
+            </field>
           </fields>
         </register>
         <register>
@@ -6854,26 +7012,20 @@
               <bitOffset>7</bitOffset>
               <bitWidth>1</bitWidth>
               <access>read-write</access>
-              <enumeratedValues>
-              <enumeratedValue>
-              <name>UNHOLD</name>
-              <description>Watchdog timer is not stopped</description>
-              <value>0</value>
-              </enumeratedValue>
-              <enumeratedValue>
-              <name>HOLD</name>
-              <description>Watchdog timer is stopped</description>
-              <value>1</value>
-              </enumeratedValue>
-              </enumeratedValues>
             </field>
-          <field>
-          <name>WDTPW</name>
-          <description>WDT Timer password</description>
-          <bitOffset>8</bitOffset>
-          <bitWidth>8</bitWidth>
-          <access>read-write</access>
-          </field>
+            <field>
+              <name>WDTPW</name>
+              <description>Watchdog timer password</description>
+              <bitOffset>8</bitOffset>
+              <bitWidth>8</bitWidth>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>255</maximum>
+                </range>
+              </writeConstraint>
+            </field>
           </fields>
         </register>
       </registers>

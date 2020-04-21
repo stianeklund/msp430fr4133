@@ -1,4 +1,5 @@
 # `msp430fr4133`
+[![Build Status](https://travis-ci.com/stianeklund/msp430fr4133.svg?branch=master)](https://travis-ci.com/stianeklund/msp430fr4133)
 
 > Peripheral access API for the MSP430FR4133 microcontroller
 >

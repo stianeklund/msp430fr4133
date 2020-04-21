@@ -106,6 +106,20 @@ impl<'a> SVSHE_W<'a> {
         self.w
     }
 }
+#[doc = "Reader of field `PMMPW`"]
+pub type PMMPW_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `PMMPW`"]
+pub struct PMMPW_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> PMMPW_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0xff << 8)) | (((value as u16) & 0xff) << 8);
+        self.w
+    }
+}
 impl R {
     #[doc = "Bit 2 - PMM Software BOR"]
     #[inline(always)]
@@ -126,6 +140,11 @@ impl R {
     #[inline(always)]
     pub fn svshe(&self) -> SVSHE_R {
         SVSHE_R::new(((self.bits >> 6) & 0x01) != 0)
+    }
+    #[doc = "Bits 8:15 - PMM password."]
+    #[inline(always)]
+    pub fn pmmpw(&self) -> PMMPW_R {
+        PMMPW_R::new(((self.bits >> 8) & 0xff) as u8)
     }
 }
 impl W {
@@ -148,5 +167,11 @@ impl W {
     #[inline(always)]
     pub fn svshe(&mut self) -> SVSHE_W {
         SVSHE_W { w: self }
+    }
+
+    #[doc = "Bits 8:15 - PMM password."]
+    #[inline(always)]
+    pub fn pmmpw(&mut self) -> PMMPW_W {
+        PMMPW_W { w: self }
     }
 }

@@ -2,6 +2,7 @@
 pub type R = crate::R<u16, super::ADCCTL0>;
 #[doc = "Writer for register ADCCTL0"]
 pub type W = crate::W<u16, super::ADCCTL0>;
+
 #[doc = "Register ADCCTL0 `reset()`'s with value 0"]
 impl crate::ResetValue for super::ADCCTL0 {
     type Type = u16;
@@ -10,12 +11,15 @@ impl crate::ResetValue for super::ADCCTL0 {
         0
     }
 }
+
 #[doc = "Reader of field `ADCSC`"]
 pub type ADCSC_R = crate::R<bool, bool>;
+
 #[doc = "Write proxy for field `ADCSC`"]
 pub struct ADCSC_W<'a> {
     w: &'a mut W,
 }
+
 impl<'a> ADCSC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -34,12 +38,15 @@ impl<'a> ADCSC_W<'a> {
         self.w
     }
 }
+
 #[doc = "Reader of field `ADCENC`"]
 pub type ADCENC_R = crate::R<bool, bool>;
+
 #[doc = "Write proxy for field `ADCENC`"]
 pub struct ADCENC_W<'a> {
     w: &'a mut W,
 }
+
 impl<'a> ADCENC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -58,12 +65,15 @@ impl<'a> ADCENC_W<'a> {
         self.w
     }
 }
+
 #[doc = "Reader of field `ADCON`"]
 pub type ADCON_R = crate::R<bool, bool>;
+
 #[doc = "Write proxy for field `ADCON`"]
 pub struct ADCON_W<'a> {
     w: &'a mut W,
 }
+
 impl<'a> ADCON_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -82,12 +92,15 @@ impl<'a> ADCON_W<'a> {
         self.w
     }
 }
+
 #[doc = "Reader of field `ADCMSC`"]
 pub type ADCMSC_R = crate::R<bool, bool>;
+
 #[doc = "Write proxy for field `ADCMSC`"]
 pub struct ADCMSC_W<'a> {
     w: &'a mut W,
 }
+
 impl<'a> ADCMSC_W<'a> {
     #[doc = r"Sets the field bit"]
     #[inline(always)]
@@ -106,6 +119,7 @@ impl<'a> ADCMSC_W<'a> {
         self.w
     }
 }
+
 #[doc = "ADC Sample Hold Select Bit: 0\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 #[repr(u8)]
@@ -143,14 +157,17 @@ pub enum ADCSHT_A {
     #[doc = "15: ADC Sample Hold Select 15"]
     ADCSHT_15 = 15,
 }
+
 impl From<ADCSHT_A> for u8 {
     #[inline(always)]
     fn from(variant: ADCSHT_A) -> Self {
         variant as _
     }
 }
+
 #[doc = "Reader of field `ADCSHT`"]
 pub type ADCSHT_R = crate::R<u8, ADCSHT_A>;
+
 impl ADCSHT_R {
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
@@ -256,10 +273,12 @@ impl ADCSHT_R {
         *self == ADCSHT_A::ADCSHT_15
     }
 }
+
 #[doc = "Write proxy for field `ADCSHT`"]
 pub struct ADCSHT_W<'a> {
     w: &'a mut W,
 }
+
 impl<'a> ADCSHT_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
@@ -355,6 +374,7 @@ impl<'a> ADCSHT_W<'a> {
         self.w
     }
 }
+
 impl R {
     #[doc = "Bit 0 - ADC Start Conversion"]
     #[inline(always)]
@@ -382,6 +402,7 @@ impl R {
         ADCSHT_R::new(((self.bits >> 8) & 0x0f) as u8)
     }
 }
+
 impl W {
     #[doc = "Bit 0 - ADC Start Conversion"]
     #[inline(always)]
