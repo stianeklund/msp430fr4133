@@ -5,8 +5,9 @@ authors = ["Stian Eklund <stian.eklund@gmail.com>"]
 description = "Peripheral access crate for MSP430FR4133 microcontroller"
 keywords = ["no-std", "msp430", "ti", "launchpad", "embedded"]
 repository = "https://github.com/stianeklund/msp430fr4133"
-documentation = "https://doc.rs/msp430fr4133"
+documentation = "https://docs.rs/msp430fr4133"
 edition = "2018"
+license = "MIT OR Apache-2.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

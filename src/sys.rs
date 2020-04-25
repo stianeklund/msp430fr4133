@@ -23,7 +23,7 @@ pub struct RegisterBlock {
     pub sysuniv: SYSUNIV,
     #[doc = "0x1c - System NMI vector generator"]
     pub syssniv: SYSSNIV,
-    #[doc = "0x1e - Reset Vector Generator"]
+    #[doc = "0x1e - Reset vector generator"]
     pub sysrstiv: SYSRSTIV,
     #[doc = "0x20 - System Configuration 0"]
     pub syscfg0: SYSCFG0,
@@ -142,14 +142,16 @@ impl crate::Readable for SYSSNIV {}
 impl crate::Writable for SYSSNIV {}
 #[doc = "System NMI vector generator"]
 pub mod syssniv;
-#[doc = "Reset Vector Generator\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sysrstiv](sysrstiv) module"]
+#[doc = "Reset vector generator\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sysrstiv](sysrstiv) module"]
 pub type SYSRSTIV = crate::Reg<u16, _SYSRSTIV>;
 #[allow(missing_docs)]
 #[doc(hidden)]
 pub struct _SYSRSTIV;
 #[doc = "`read()` method returns [sysrstiv::R](sysrstiv::R) reader structure"]
 impl crate::Readable for SYSRSTIV {}
-#[doc = "Reset Vector Generator"]
+#[doc = "`write(|w| ..)` method takes [sysrstiv::W](sysrstiv::W) writer structure"]
+impl crate::Writable for SYSRSTIV {}
+#[doc = "Reset vector generator"]
 pub mod sysrstiv;
 #[doc = "System Configuration 0\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [syscfg0](syscfg0) module"]
 pub type SYSCFG0 = crate::Reg<u16, _SYSCFG0>;

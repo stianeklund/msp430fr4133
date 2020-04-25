@@ -296,64 +296,13 @@ impl<'a> WDTSSEL_W<'a> {
         self.w
     }
 }
-#[doc = "Watchdog timerhold\n\nValue on reset: 0"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum WDTHOLD_A {
-    #[doc = "0: Watchdog timer is not stopped"]
-    UNHOLD = 0,
-    #[doc = "1: Watchdog timer is stopped"]
-    HOLD = 1,
-}
-impl From<WDTHOLD_A> for bool {
-    #[inline(always)]
-    fn from(variant: WDTHOLD_A) -> Self {
-        variant as u8 != 0
-    }
-}
 #[doc = "Reader of field `WDTHOLD`"]
-pub type WDTHOLD_R = crate::R<bool, WDTHOLD_A>;
-impl WDTHOLD_R {
-    #[doc = r"Get enumerated values variant"]
-    #[inline(always)]
-    pub fn variant(&self) -> WDTHOLD_A {
-        match self.bits {
-            false => WDTHOLD_A::UNHOLD,
-            true => WDTHOLD_A::HOLD,
-        }
-    }
-    #[doc = "Checks if the value of the field is `UNHOLD`"]
-    #[inline(always)]
-    pub fn is_unhold(&self) -> bool {
-        *self == WDTHOLD_A::UNHOLD
-    }
-    #[doc = "Checks if the value of the field is `HOLD`"]
-    #[inline(always)]
-    pub fn is_hold(&self) -> bool {
-        *self == WDTHOLD_A::HOLD
-    }
-}
+pub type WDTHOLD_R = crate::R<bool, bool>;
 #[doc = "Write proxy for field `WDTHOLD`"]
 pub struct WDTHOLD_W<'a> {
     w: &'a mut W,
 }
 impl<'a> WDTHOLD_W<'a> {
-    #[doc = r"Writes `variant` to the field"]
-    #[inline(always)]
-    pub fn variant(self, variant: WDTHOLD_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
-    }
-    #[doc = "Watchdog timer is not stopped"]
-    #[inline(always)]
-    pub fn unhold(self) -> &'a mut W {
-        self.variant(WDTHOLD_A::UNHOLD)
-    }
-    #[doc = "Watchdog timer is stopped"]
-    #[inline(always)]
-    pub fn hold(self) -> &'a mut W {
-        self.variant(WDTHOLD_A::HOLD)
-    }
     #[doc = r"Sets the field bit"]
     #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
@@ -371,13 +320,65 @@ impl<'a> WDTHOLD_W<'a> {
         self.w
     }
 }
+#[doc = "Watchdog Timer Password\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
+pub enum WDTPW_A {
+    #[doc = "105: Value always read from the Watchdog Password register"]
+    PASSWORD = 105,
+}
+impl From<WDTPW_A> for u8 {
+    #[inline(always)]
+    fn from(variant: WDTPW_A) -> Self {
+        variant as _
+    }
+}
 #[doc = "Reader of field `WDTPW`"]
-pub type WDTPW_R = crate::R<u8, u8>;
+pub type WDTPW_R = crate::R<u8, WDTPW_A>;
+impl WDTPW_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, WDTPW_A> {
+        use crate::Variant::*;
+        match self.bits {
+            105 => Val(WDTPW_A::PASSWORD),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `PASSWORD`"]
+    #[inline(always)]
+    pub fn is_password(&self) -> bool {
+        *self == WDTPW_A::PASSWORD
+    }
+}
+#[doc = "Watchdog Timer Password\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
+pub enum WDTPW_AW {
+    #[doc = "90: Value which must be written to the Watchdog Password register"]
+    PASSWORD = 90,
+}
+impl From<WDTPW_AW> for u8 {
+    #[inline(always)]
+    fn from(variant: WDTPW_AW) -> Self {
+        variant as _
+    }
+}
 #[doc = "Write proxy for field `WDTPW`"]
 pub struct WDTPW_W<'a> {
     w: &'a mut W,
 }
 impl<'a> WDTPW_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: WDTPW_AW) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
+    #[doc = "Value which must be written to the Watchdog Password register"]
+    #[inline(always)]
+    pub fn password(self) -> &'a mut W {
+        self.variant(WDTPW_AW::PASSWORD)
+    }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -406,12 +407,12 @@ impl R {
     pub fn wdtssel(&self) -> WDTSSEL_R {
         WDTSSEL_R::new(((self.bits >> 5) & 0x03) as u8)
     }
-    #[doc = "Bit 7 - WDT Timer hold"]
+    #[doc = "Bit 7 - WDT - Timer hold"]
     #[inline(always)]
     pub fn wdthold(&self) -> WDTHOLD_R {
         WDTHOLD_R::new(((self.bits >> 7) & 0x01) != 0)
     }
-    #[doc = "Bits 8:15 - WDT Timer password"]
+    #[doc = "Bits 8:15 - Watchdog Timer Password"]
     #[inline(always)]
     pub fn wdtpw(&self) -> WDTPW_R {
         WDTPW_R::new(((self.bits >> 8) & 0xff) as u8)
@@ -438,12 +439,12 @@ impl W {
     pub fn wdtssel(&mut self) -> WDTSSEL_W {
         WDTSSEL_W { w: self }
     }
-    #[doc = "Bit 7 - WDT Timer hold"]
+    #[doc = "Bit 7 - WDT - Timer hold"]
     #[inline(always)]
     pub fn wdthold(&mut self) -> WDTHOLD_W {
         WDTHOLD_W { w: self }
     }
-    #[doc = "Bits 8:15 -WDT Watchdog Timer password"]
+    #[doc = "Bits 8:15 - Watchdog Timer Password"]
     #[inline(always)]
     pub fn wdtpw(&mut self) -> WDTPW_W {
         WDTPW_W { w: self }

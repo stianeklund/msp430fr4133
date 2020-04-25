@@ -106,13 +106,65 @@ impl<'a> SVSHE_W<'a> {
         self.w
     }
 }
+#[doc = "PMM Password\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
+pub enum PMMPW_A {
+    #[doc = "150: Values always reads from the PMMCTL0 register"]
+    PASSWORD = 150,
+}
+impl From<PMMPW_A> for u8 {
+    #[inline(always)]
+    fn from(variant: PMMPW_A) -> Self {
+        variant as _
+    }
+}
 #[doc = "Reader of field `PMMPW`"]
-pub type PMMPW_R = crate::R<u8, u8>;
+pub type PMMPW_R = crate::R<u8, PMMPW_A>;
+impl PMMPW_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, PMMPW_A> {
+        use crate::Variant::*;
+        match self.bits {
+            150 => Val(PMMPW_A::PASSWORD),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `PASSWORD`"]
+    #[inline(always)]
+    pub fn is_password(&self) -> bool {
+        *self == PMMPW_A::PASSWORD
+    }
+}
+#[doc = "PMM Password\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
+pub enum PMMPW_AW {
+    #[doc = "165: Values which must be written to the PMMCTL0 register"]
+    PASSWORD = 165,
+}
+impl From<PMMPW_AW> for u8 {
+    #[inline(always)]
+    fn from(variant: PMMPW_AW) -> Self {
+        variant as _
+    }
+}
 #[doc = "Write proxy for field `PMMPW`"]
 pub struct PMMPW_W<'a> {
     w: &'a mut W,
 }
 impl<'a> PMMPW_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PMMPW_AW) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
+    #[doc = "Values which must be written to the PMMCTL0 register"]
+    #[inline(always)]
+    pub fn password(self) -> &'a mut W {
+        self.variant(PMMPW_AW::PASSWORD)
+    }
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
@@ -141,7 +193,7 @@ impl R {
     pub fn svshe(&self) -> SVSHE_R {
         SVSHE_R::new(((self.bits >> 6) & 0x01) != 0)
     }
-    #[doc = "Bits 8:15 - PMM password."]
+    #[doc = "Bits 8:15 - PMM Password"]
     #[inline(always)]
     pub fn pmmpw(&self) -> PMMPW_R {
         PMMPW_R::new(((self.bits >> 8) & 0xff) as u8)
@@ -168,8 +220,7 @@ impl W {
     pub fn svshe(&mut self) -> SVSHE_W {
         SVSHE_W { w: self }
     }
-
-    #[doc = "Bits 8:15 - PMM password."]
+    #[doc = "Bits 8:15 - PMM Password"]
     #[inline(always)]
     pub fn pmmpw(&mut self) -> PMMPW_W {
         PMMPW_W { w: self }

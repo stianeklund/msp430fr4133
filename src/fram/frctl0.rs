@@ -155,11 +155,82 @@ impl<'a> NWAITS_W<'a> {
         self.w
     }
 }
+#[doc = "FRCTLPW Password\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
+pub enum FRCTLPW_A {
+    #[doc = "150: Value always reads from the FRCTL0 register"]
+    PASSWORD = 150,
+}
+impl From<FRCTLPW_A> for u8 {
+    #[inline(always)]
+    fn from(variant: FRCTLPW_A) -> Self {
+        variant as _
+    }
+}
+#[doc = "Reader of field `FRCTLPW`"]
+pub type FRCTLPW_R = crate::R<u8, FRCTLPW_A>;
+impl FRCTLPW_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, FRCTLPW_A> {
+        use crate::Variant::*;
+        match self.bits {
+            150 => Val(FRCTLPW_A::PASSWORD),
+            i => Res(i),
+        }
+    }
+    #[doc = "Checks if the value of the field is `PASSWORD`"]
+    #[inline(always)]
+    pub fn is_password(&self) -> bool {
+        *self == FRCTLPW_A::PASSWORD
+    }
+}
+#[doc = "FRCTLPW Password\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
+pub enum FRCTLPW_AW {
+    #[doc = "165: Value which must be written to the FRCTL0 register"]
+    PASSWORD = 165,
+}
+impl From<FRCTLPW_AW> for u8 {
+    #[inline(always)]
+    fn from(variant: FRCTLPW_AW) -> Self {
+        variant as _
+    }
+}
+#[doc = "Write proxy for field `FRCTLPW`"]
+pub struct FRCTLPW_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> FRCTLPW_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: FRCTLPW_AW) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
+    #[doc = "Value which must be written to the FRCTL0 register"]
+    #[inline(always)]
+    pub fn password(self) -> &'a mut W {
+        self.variant(FRCTLPW_AW::PASSWORD)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0xff << 8)) | (((value as u16) & 0xff) << 8);
+        self.w
+    }
+}
 impl R {
     #[doc = "Bits 4:6 - FRAM Wait state control Bit: 0"]
     #[inline(always)]
     pub fn nwaits(&self) -> NWAITS_R {
         NWAITS_R::new(((self.bits >> 4) & 0x07) as u8)
+    }
+    #[doc = "Bits 8:15 - FRCTLPW Password"]
+    #[inline(always)]
+    pub fn frctlpw(&self) -> FRCTLPW_R {
+        FRCTLPW_R::new(((self.bits >> 8) & 0xff) as u8)
     }
 }
 impl W {
@@ -167,5 +238,10 @@ impl W {
     #[inline(always)]
     pub fn nwaits(&mut self) -> NWAITS_W {
         NWAITS_W { w: self }
+    }
+    #[doc = "Bits 8:15 - FRCTLPW Password"]
+    #[inline(always)]
+    pub fn frctlpw(&mut self) -> FRCTLPW_W {
+        FRCTLPW_W { w: self }
     }
 }

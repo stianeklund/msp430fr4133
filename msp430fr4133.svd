@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <device>
   <name>MSP430FR4133</name>
   <size>2</size>
@@ -5243,12 +5243,24 @@
               <bitOffset>8</bitOffset>
               <bitWidth>8</bitWidth>
               <access>read-write</access>
-              <writeConstraint>
-                <range>
-                  <minimum>0</minimum>
-                  <maximum>255</maximum>
-                </range>
-              </writeConstraint>
+              <enumeratedValues>
+                <name>PMMPWR</name>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PASSWORD</name>
+                  <description>Values always reads from the PMMCTL0 register</description>
+                  <value>150</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <name>PMMPWW</name>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>PASSWORD</name>
+                  <description>Values which must be written to the PMMCTL0 register</description>
+                  <value>165</value>
+                </enumeratedValue>
+              </enumeratedValues>
             </field>
           </fields>
         </register>
@@ -5321,6 +5333,51 @@
               <bitOffset>13</bitOffset>
               <bitWidth>1</bitWidth>
               <access>read-write</access>
+            </field>
+            <field>
+              <name>REFGEN</name>
+              <description>Reference generator trigger. If written with a 1, the generation of the variable reference voltage is started. When the reference voltage request is set, this bit is cleared by hardware or writing 0.</description>
+              <bitOffset>6</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>REFBGEN</name>
+              <description>Bandgap and bandgap buffer trigger. If written with a 1, the generation of the buffered bandgap voltage is started. When the bandgap buffer voltage request is set, this bit is cleared by hardware or writing 0.</description>
+              <bitOffset>7</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>REFVSEL</name>
+              <description>Internal reference voltage level select. 00b = 1.5V, 01b = 2.0V, 10b = 2.5V</description>
+              <bitOffset>4</bitOffset>
+              <bitWidth>2</bitWidth>
+              <access>read-write</access>
+              <enumeratedValues>
+                <name>REFVSEL</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>REFVSEL_0</name>
+                  <description>00b = 1.5V</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>REFVSEL_1</name>
+                  <description>01b = 2.0V</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>REFVSEL_2</name>
+                  <description>10b = 2.5V</description>
+                  <value>2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>REFVSEL_3</name>
+                  <description>11b = Reserved</description>
+                  <value>3</value>
+                </enumeratedValue>
+              </enumeratedValues>
             </field>
           </fields>
         </register>
@@ -5588,116 +5645,10 @@
         </register>
         <register>
           <name>SYSRSTIV</name>
-          <description>Reset Vector Generator</description>
+          <description>Reset vector generator</description>
           <addressOffset>30</addressOffset>
           <size>16</size>
           <resetMask>65535</resetMask>
-          <fields>
-            <field>
-              <name>SYSRSTIV</name>
-              <description>Reset interrupt vector</description>
-              <bitOffset>0</bitOffset>
-              <bitWidth>16</bitWidth>
-              <access>read-only</access>
-              <enumeratedValues>
-                <enumeratedValue>
-                  <name>NONE</name>
-                  <description>No interrupt pending</description>
-                  <value>0</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>BOR</name>
-                  <description>Brownout</description>
-                  <value>2</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>RSTNMI</name>
-                  <description>RSTIFG RST/NMI</description>
-                  <value>4</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>PMMSWBOR</name>
-                  <description>PMMSWBOR software BOR</description>
-                  <value>6</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>LPM5WU</name>
-                  <description>LPMx.5 wakeup</description>
-                  <value>8</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>SECYV</name>
-                  <description>Security violation</description>
-                  <value>10</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>SYSRSTIV_12</name>
-                  <description>Reserved</description>
-                  <value>12</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>SVSHIFG</name>
-                  <description>SVSHIFG SVSH event</description>
-                  <value>14</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>SYSRSTIV_16</name>
-                  <description>Reserved</description>
-                  <value>16</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>SYSRSTIV_18</name>
-                  <description>Reserved</description>
-                  <value>18</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>PMMSWPOR</name>
-                  <description>PMMSWPOR software POR</description>
-                  <value>20</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>WDTIFG</name>
-                  <description>WDTIFG watchdog timeout</description>
-                  <value>22</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>WDTPW</name>
-                  <description>WDTPW watchdog password violation</description>
-                  <value>24</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>FRCTLPW</name>
-                  <description>FRCTLPW password violation</description>
-                  <value>26</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>UBDIFG</name>
-                  <description>Uncorrectable FRAM bit error detection</description>
-                  <value>28</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>PERF</name>
-                  <description>Peripheral area fetch</description>
-                  <value>30</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>PMMPW</name>
-                  <description>PMM password violation</description>
-                  <value>32</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>SYSRSTIV_34</name>
-                  <description>Reserved</description>
-                  <value>34</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>FLLUL</name>
-                  <description>FLL unlock (PUC)</description>
-                  <value>36</value>
-                </enumeratedValue>
-              </enumeratedValues>
-            </field>
-          </fields>
         </register>
         <register>
           <name>SYSCFG0</name>
@@ -5719,32 +5670,6 @@
               <bitOffset>1</bitOffset>
               <bitWidth>1</bitWidth>
               <access>read-write</access>
-            </field>
-            <field>
-              <name>FRWPPW</name>
-              <description>FRAM protection password. Write with 0A5h to unlock the FRAM protection registers. Always reads as 096h</description>
-              <bitOffset>8</bitOffset>
-              <bitWidth>8</bitWidth>
-              <access>read-write</access>
-              <writeConstraint>
-                <range>
-                  <minimum>0</minimum>
-                  <maximum>255</maximum>
-                </range>
-              </writeConstraint>
-            </field>
-            <field>
-              <name>FRWPOA</name>
-              <description>Program FRAM write protection offsett address from the beginning of Program FRAM. The offset increases by 1KB resolution</description>
-              <bitOffset>2</bitOffset>
-              <bitWidth>6</bitWidth>
-              <access>read-write</access>
-              <writeConstraint>
-                <range>
-                  <minimum>0</minimum>
-                  <maximum>63</maximum>
-                </range>
-              </writeConstraint>
             </field>
           </fields>
         </register>
@@ -6771,16 +6696,27 @@
             </field>
             <field>
               <name>FRCTLPW</name>
-              <description>FRCTLPW password</description>
+              <description>FRCTLPW Password</description>
               <bitOffset>8</bitOffset>
               <bitWidth>8</bitWidth>
-              <access>read-write</access>
-              <writeConstraint>
-                <range>
-                  <minimum>0</minimum>
-                  <maximum>255</maximum>
-                </range>
-              </writeConstraint>
+              <enumeratedValues>
+                <name>FRCTLPWR</name>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PASSWORD</name>
+                  <description>Value always reads from the FRCTL0 register</description>
+                  <value>150</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <name>FRCTLPWW</name>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>PASSWORD</name>
+                  <description>Value which must be written to the FRCTL0 register</description>
+                  <value>165</value>
+                </enumeratedValue>
+              </enumeratedValues>
             </field>
           </fields>
         </register>
@@ -7015,16 +6951,27 @@
             </field>
             <field>
               <name>WDTPW</name>
-              <description>Watchdog timer password</description>
+              <description>Watchdog Timer Password</description>
               <bitOffset>8</bitOffset>
               <bitWidth>8</bitWidth>
-              <access>read-write</access>
-              <writeConstraint>
-                <range>
-                  <minimum>0</minimum>
-                  <maximum>255</maximum>
-                </range>
-              </writeConstraint>
+              <enumeratedValues>
+                <name>WDTPWR</name>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>PASSWORD</name>
+                  <description>Value always read from the Watchdog Password register</description>
+                  <value>105</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <name>WDTPWW</name>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>PASSWORD</name>
+                  <description>Value which must be written to the Watchdog Password register</description>
+                  <value>90</value>
+                </enumeratedValue>
+              </enumeratedValues>
             </field>
           </fields>
         </register>
@@ -11123,4 +11070,10 @@
       </interrupt>
     </peripheral>
   </peripherals>
+  <vendorExtensions>
+    <msp430_svd>
+      <version>0.2.0</version>
+      <commit_hash>2dc0c1f</commit_hash>
+    </msp430_svd>
+  </vendorExtensions>
 </device>
