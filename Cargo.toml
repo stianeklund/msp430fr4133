@@ -1,6 +1,6 @@
 [package]
 name = "msp430fr4133"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Stian Eklund <stian.eklund@gmail.com>"]
 description = "Peripheral access crate for MSP430FR4133 microcontroller"
 keywords = ["no-std", "msp430", "ti", "launchpad", "embedded"]
